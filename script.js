@@ -29,7 +29,7 @@ const departures = [
     const delay = trainDOM.querySelector('.delay')
     const btn = trainDOM.querySelector('.isDelayed');
     btn.addEventListener('click', () => {
-      if(delay.innerHTML === 'delayed') {
+      if(delay.innerHTML.includes('delayed')) {
         delay.innerHTML = 'on time';
         input.style.display = 'none';
         departures[i].status = 'on time';
@@ -37,10 +37,11 @@ const departures = [
       } else {
         delay.innerHTML = 'delayed';
         input.style.display = 'inline-block';
-        input.value.focus();
         input.style.position = 'absolute';
         departures[i].status = 'delayed';
         trainDOM.style.backgroundColor = 'salmon';
+        input.focus();
+        input.value = '';
       }
     });
 
