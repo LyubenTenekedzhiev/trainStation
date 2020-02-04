@@ -21,23 +21,37 @@ const departures = [
     <td class='delay'>${departures[i].status}</td>
     <td>${departures[i].track}</td>
     <button class="isDelayed">Check if delayed</button>
+    <input type='text' class='input__delay'>
     `;
     
+    const input = trainDOM.querySelector('.input__delay');
+    input.style.display = 'none';
     const delay = trainDOM.querySelector('.delay')
     const btn = trainDOM.querySelector('.isDelayed');
     btn.addEventListener('click', () => {
       if(delay.innerHTML === 'delayed') {
         delay.innerHTML = 'on time';
+        input.style.display = 'none';
         departures[i].status = 'on time';
-        console.log(departures)
         trainDOM.style.backgroundColor = '';
       } else {
         delay.innerHTML = 'delayed';
+        input.style.display = 'inline-block';
+        input.value.focus();
+        input.style.position = 'absolute';
         departures[i].status = 'delayed';
-        console.log(departures);
         trainDOM.style.backgroundColor = 'salmon';
       }
     });
+
+    input.addEventListener('keypress', e => {
+      if(e.keyCode === 13) {
+        delay.innerHTML = Number(Math.floor(input.value / 60)) + ':' + Number(input.value % 60) + ' min ' + 'delayed';
+        input.style.display = 'none';
+      } else {
+        return false;
+      }
+    })
 
     trainTime.appendChild(trainDOM);
   }
