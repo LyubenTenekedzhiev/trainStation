@@ -9,6 +9,7 @@ const departures = [
 ];
 
   const trainTime = document.querySelector('.board__table');
+  
   for(let i = 0; i < departures.length; i++) {
     const trainDOM = document.createElement('tr');
     trainDOM.innerHTML = 
