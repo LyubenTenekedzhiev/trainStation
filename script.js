@@ -26,10 +26,14 @@ const departures = [
     const btn = trainDOM.querySelector('.isDelayed');
     btn.addEventListener('click', () => {
       if(delay.innerHTML === 'delayed') {
-        delay.innerHTML = 'on time'
+        delay.innerHTML = 'on time';
+        departures[i].status = 'on time';
+        console.log(departures)
         trainDOM.style.backgroundColor = '';
       } else {
         delay.innerHTML = 'delayed';
+        departures[i].status = 'delayed';
+        console.log(departures);
         trainDOM.style.backgroundColor = 'salmon';
       }
     });
